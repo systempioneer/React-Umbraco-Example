@@ -1,4 +1,5 @@
 ﻿@using Newtonsoft.Json
+@using UmbracoReactStarterKit
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = null;
@@ -11,8 +12,7 @@
             list.Add(c);
             return list;
         })
-        .Select(p => new {Id = p.Id, Name = p.Name, Url = p.Url})
-        .ToArray();
+        .ToDictionary(p => p.Url, p => new { Id = p.Id, Name = p.Name });
 
     var initialState = new
     {
@@ -28,7 +28,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
 
     <!-- Meta tags -->
     <meta charset="utf-8">
@@ -38,9 +38,9 @@
 
     <title>@CurrentPage.Name | @CurrentPage._siteTitle</title>
 
-	<!-- Fonts -->
-	<link href="//fonts.googleapis.com/css?family=Merriweather:400,700,300,900" rel="stylesheet" type="text/css">
-	<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" type="text/css">
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,300,900" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" type="text/css">
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -53,51 +53,52 @@
       <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
-  @*<header>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-8 col-sm-12 col-md-4">
-			<a href="@home.Url">
-            	<div class="brand" style="background-image:url('@(home.SiteLogo)?height=65&width=205&bgcolor=000')"></div>
-			</a>
-          </div>
-          <div class="col-sm-12 col-md-8">
-            <nav>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8 col-sm-12 col-md-4">
+                    <a href="@home.Url">
+                        <div class="brand" style="background-image:url('@(home.SiteLogo)?height=65&width=205&bgcolor=000')"></div>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md-8">
+                    <nav>
 
-              @{ Html.RenderPartial("MainNavigation"); }
+                        @{ Html.RenderPartial("MainNavigation"); }
 
-            </nav>
-          </div>
+                    </nav>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div id="toggle" class="toggle">
-        <a href="#" class="cross"><span></span></a>
-      </div>
+        <div id="toggle" class="toggle">
+            <a href="#" class="cross"><span></span></a>
+        </div>
     </header>
 
-    @RenderBody()
+    <div id="root"></div>
 
     <footer class="field dark">
-      <div class="container">
-        <div class="row">
+        <div class="container">
+            <div class="row">
 
-		  @{ Html.RenderPartial("BottomNavigation"); }
+                @{ Html.RenderPartial("BottomNavigation"); }
 
+            </div>
         </div>
-      </div>
-    </footer>*@
-    
-  <div id="root"></div>
+    </footer>
 
-  <!-- Javascripts -->
-  <script> window.__INITIAL_STATE__ = @Html.Raw(serializedInitialState) </script>
-  <script src="/static/js/bundle.js"></script>
+
+    <!-- Javascripts -->
+    <script>
+      window.__INITIAL_STATE__ = @Html.Raw(serializedInitialState)
+    </script>
+    <script src="/static/js/bundle.js"></script>
     @*<script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-	<script src="/scripts/fanoe.js"></script>*@
-  </body>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/scripts/fanoe.js"></script>*@
+</body>
 </html>

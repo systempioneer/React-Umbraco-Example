@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import ContentPage from './ContentPage';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = { currentContent: '' }
-  }
-
-  componentDidMount() {
-    fetch('/umbraco/surface/rendercontent/byid/1064', { credentials: 'same-origin' })
-      .then((response) => {
-        if (response.ok) {
-          return response.text()
-        }
-        return Promise.reject(response)
-      })
-      .then(result => { this.setState({ currentContent: result }) })
-  }
-
   render() {
     return (
-      <div className="App" dangerouslySetInnerHTML ={{ __html: this.state.currentContent }}>
-      </div>
+      <Router>
+        <div className="App">
+
+          {Object.keys(window.__INITIAL_STATE__.content).map((item, index) => <Route key={index} exact path={item} component={ContentPage} /> )}
+
+        </div>
+      </Router>
     );
   }
 }
