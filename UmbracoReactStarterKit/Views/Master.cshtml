@@ -56,7 +56,7 @@
   </head>
 
   <body>
-    <header>
+  @*<header>
       <div class="container">
         <div class="row">
           <div class="col-xs-8 col-sm-12 col-md-4">
@@ -89,12 +89,15 @@
 
         </div>
       </div>
-    </footer>
+    </footer>*@
+    
+  <div id="root"></div>
 
   <!-- Javascripts -->
-    <script> window.__INITIAL_STATE__ = @Html.Raw(serializedInitialState) </script>
-    <script src="/js/jquery.min.js"></script>
+  <script> window.__INITIAL_STATE__ = @Html.Raw(serializedInitialState) </script>
+  <script src="/static/js/bundle.js"></script>
+    @*<script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-	<script src="/scripts/fanoe.js"></script>
+	<script src="/scripts/fanoe.js"></script>*@
   </body>
 </html>

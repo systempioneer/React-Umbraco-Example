@@ -351,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\UmbracoReactStartup.cs" />
+    <Compile Include="Controllers\ReactRoutesController.cs" />
     <Compile Include="Controllers\RenderContentController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
