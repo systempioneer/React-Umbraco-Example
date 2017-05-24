@@ -283,6 +283,19 @@
     <Content Include="config\BaseRestExtensions.config" />
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
+    <Content Include="Views\BlogOverview.cshtml" />
+    <Content Include="Views\BlogPost.cshtml" />
+    <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\Master.cshtml" />
+    <Content Include="Views\Partials\BottomNavigation.cshtml" />
+    <Content Include="Views\Partials\Grid\Fanoe.cshtml" />
+    <Content Include="Views\Partials\MainNavigation.cshtml" />
+    <Content Include="Views\TextPage.cshtml" />
+    <Content Include="App_Plugins\Grid\Editors\Render\embed_videowrapper.cshtml" />
+    <Content Include="App_Plugins\Grid\Editors\Render\media_round.cshtml" />
+    <Content Include="App_Plugins\Grid\Editors\Render\media_text_right.cshtml" />
+    <Content Include="App_Plugins\Grid\Editors\Render\media_wide.cshtml" />
+    <Content Include="App_Plugins\Grid\Editors\Render\quote_with_description.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -291,6 +304,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Grid\Config\FanoeConfig.txt" />
+    <Content Include="App_Plugins\Grid\Editors\Views\media_with_description.html" />
+    <Content Include="App_Plugins\Grid\Editors\Views\quote_with_description.html" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
@@ -313,8 +329,15 @@
     <Content Include="config\Lang\ru-RU.user.xml" />
     <Content Include="config\Lang\sv-SE.user.xml" />
     <Content Include="config\Lang\zh-CN.user.xml" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\fanoe.css" />
+    <Content Include="css\rte.css" />
+    <Content Include="css\style.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="scripts\fanoe.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
