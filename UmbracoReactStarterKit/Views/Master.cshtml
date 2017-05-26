@@ -1,35 +1,38 @@
 ﻿@using Newtonsoft.Json
 @using React.Web.Mvc
 @using UmbracoReactStarterKit
+@using UmbracoReactStarterKit.Controllers
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
-        Layout = null;
-        var home = CurrentPage.Site();
+    Layout = null;
+    var home = CurrentPage.Site();
+    var controller = ((ReactRenderMvcController) this.ViewContext.Controller);
+ 
 
-        var contentPages = Umbraco.TypedContentAtRoot()
-            .SelectMany(c =>
-            {
-                var list = c.Descendants().ToList();
-                list.Add(c);
-                return list;
-            })
-            .ToDictionary(p =>
-            {
-                var sanitised = p.Url.Replace(@"//", "/");
-                return sanitised;
-            }, p => new { Id = p.Id, Name = p.Name });
+    var contentPages = Umbraco.TypedContentAtRoot()
+    .SelectMany(c =>
+    {
+        var list = c.Descendants().ToList();
+        list.Add(c);
+        return list;
+    })
+    .ToDictionary(p =>
+    {
+        var sanitised = p.Url.Replace(@"//", "/");
+        return sanitised;
+    }, p => new { Id = p.Id, Name = p.Name });
 
-        var currentContent = UmbracoContext.Current.ContentCache.GetByRoute(Request.Url.AbsolutePath);
+    var currentContent = UmbracoContext.Current.ContentCache.GetByRoute(Request.Url.AbsolutePath);
 
-        var initialState = new
-        {
-            content = contentPages,
-            ViewBag.mainNavigation,
-            ViewBag.bottomNavigation,
-            homeUrl = home.Url,
-            siteLogo = home.SiteLogo,
-            location = Request.Url.AbsolutePath,
-            currentContent = new { url = Request.Url.AbsolutePath, content =  currentContent == null ? "" : currentContent.GetGridHtml("content", "fanoe").ToHtmlString() }
+    var initialState = new
+    {
+        content = contentPages,
+        ViewBag.mainNavigation,
+        ViewBag.bottomNavigation,
+        homeUrl = home.Url,
+        siteLogo = home.SiteLogo,
+        location = Request.Url.AbsolutePath,
+        currentContent = new { url = Request.Url.AbsolutePath, content =  currentContent == null ? "" : controller.ViewFromContentId(currentContent.Id).RenderToString() }
     };
 
     var serializedInitialState = JsonConvert.SerializeObject(initialState, Formatting.None,

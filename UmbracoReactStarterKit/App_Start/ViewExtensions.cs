@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.UI;
 using Umbraco.Core.Models;
+using Umbraco.Web;
 using Umbraco.Web.Models;
 
 namespace UmbracoReactStarterKit

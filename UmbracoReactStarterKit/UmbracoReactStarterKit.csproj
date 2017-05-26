@@ -426,6 +426,7 @@
     <Compile Include="App_Start\UmbracoReactStartup.cs" />
     <Compile Include="App_Start\ViewExtensions.cs" />
     <Compile Include="Controllers\ReactRoutesController.cs" />
+    <Compile Include="Controllers\ReactRenderMvcController.cs" />
     <Compile Include="Controllers\RenderContentController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -434,6 +435,7 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\ReactRenderMvc\" />
     <Folder Include="Views\RenderContent\" />
   </ItemGroup>
   <PropertyGroup>

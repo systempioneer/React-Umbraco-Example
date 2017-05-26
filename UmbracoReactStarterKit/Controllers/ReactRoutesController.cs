@@ -4,11 +4,10 @@ using Umbraco.Web.Mvc;
 
 namespace UmbracoReactStarterKit.Controllers
 {
-    public class ReactRoutesController : RenderMvcController
+    public class ReactRoutesController : ReactRenderMvcController
     {
         public ActionResult Master(RenderModel model)
         {
-
             var mainNavigationView = View("Partials/MainNavigation", model);
             var bottomNavigationView = View("Partials/BottomNavigation", model);
 
