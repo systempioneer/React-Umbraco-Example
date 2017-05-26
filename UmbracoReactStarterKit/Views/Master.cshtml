@@ -7,22 +7,23 @@
     Layout = null;
     var home = CurrentPage.Site();
     var controller = ((ReactRenderMvcController) this.ViewContext.Controller);
- 
-
-    var contentPages = Umbraco.TypedContentAtRoot()
-    .SelectMany(c =>
-    {
-        var list = c.Descendants().ToList();
-        list.Add(c);
-        return list;
-    })
-    .ToDictionary(p =>
-    {
-        var sanitised = p.Url.Replace(@"//", "/");
-        return sanitised;
-    }, p => new { Id = p.Id, Name = p.Name });
 
     var currentContent = UmbracoContext.Current.ContentCache.GetByRoute(Request.Url.AbsolutePath);
+    var pageName = currentContent != null ? currentContent.Name : "";
+
+
+    var contentPages = Umbraco.TypedContentAtRoot()
+        .SelectMany(c =>
+        {
+            var list = c.Descendants().ToList();
+            list.Add(c);
+            return list;
+        })
+        .ToDictionary(p =>
+        {
+            var sanitised = p.Url.Replace(@"//", "/");
+            return sanitised;
+        }, p => new { Id = p.Id, Name = p.Name });
 
     var initialState = new
     {
@@ -32,7 +33,14 @@
         homeUrl = home.Url,
         siteLogo = home.SiteLogo,
         location = Request.Url.AbsolutePath,
-        currentContent = new { url = Request.Url.AbsolutePath, content =  currentContent == null ? "" : controller.ViewFromContentId(currentContent.Id).RenderToString() }
+        currentContent = new
+        {
+            Name = pageName,
+            Url = Request.Url.AbsolutePath,
+            Content =  currentContent == null ? "" : controller.ViewFromContentId(currentContent.Id).RenderToString()
+        },
+        currentPageName = pageName,
+        siteTitle = CurrentPage._siteTitle
     };
 
     var serializedInitialState = JsonConvert.SerializeObject(initialState, Formatting.None,
@@ -52,7 +60,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="@CurrentPage.siteDescription">
 
-    <title>@CurrentPage.Name | @CurrentPage._siteTitle</title>
+    <title>@pageName | @CurrentPage._siteTitle</title>
 
     <!-- Fonts -->
     <link href="//fonts.googleapis.com/css?family=Merriweather:400,700,300,900" rel="stylesheet" type="text/css">
@@ -74,9 +82,7 @@
 <body>
 
     @Html.React("Components.App.default", new { initialState })
-    @*<div id="root"></div>*@
-
-
+    
     <!-- Javascripts -->
     <script src="/app/build/static/js/main.js"></script>
     @Html.ReactInitJavaScript()

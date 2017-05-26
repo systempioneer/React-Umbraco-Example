@@ -34,7 +34,11 @@ namespace UmbracoReactStarterKit.Controllers
             }
             var renderModel = ViewExtensions.CreateRenderModel(result.First(), RouteData);
 
-            return View(renderModel.Content.GetTemplateAlias(), renderModel);
+            return Json(new
+            {
+                Name = renderModel.Content.Name,
+                Content = View(renderModel.Content.GetTemplateAlias(), renderModel).RenderToString()
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }
