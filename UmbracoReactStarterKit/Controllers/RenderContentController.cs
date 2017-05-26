@@ -14,10 +14,12 @@ namespace UmbracoReactStarterKit.Controllers
     public class RenderContentController : SurfaceController
     {
         private readonly ExamineManager _examineManager;
+        private readonly ITypedPublishedContentQuery _contentQuery;
 
-        public RenderContentController(ExamineManager examineManager)
+        public RenderContentController(ExamineManager examineManager, ITypedPublishedContentQuery contentQuery)
         {
             _examineManager = examineManager;
+            _contentQuery = contentQuery;
         }
 
         public ActionResult ById(string id)
@@ -30,19 +32,9 @@ namespace UmbracoReactStarterKit.Controllers
             {
                 return HttpNotFound();
             }
-            var renderModel = CreateRenderModel(result.First());
+            var renderModel = ViewExtensions.CreateRenderModel(result.First(), RouteData);
 
             return View(renderModel.Content.GetTemplateAlias(), renderModel);
-        }
-
-        private RenderModel CreateRenderModel(IPublishedContent content)
-        {
-            var model = new RenderModel(content, CultureInfo.CurrentUICulture);
-
-            //add an umbraco data token so the umbraco view engine executes
-            RouteData.DataTokens["umbraco"] = model;
-
-            return model;
         }
     }
 }
