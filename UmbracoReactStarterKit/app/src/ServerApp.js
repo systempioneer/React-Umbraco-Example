@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import './index.css';
 import './App.css';
 import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
+  StaticRouter as Router,
+  Route
+} from 'react-router';
 import ContentPage from './ContentPage';
 
 class App extends Component {
@@ -26,7 +24,9 @@ class App extends Component {
     }
 
     return (
-      <Router>
+      <Router
+          location={initialState.location}
+        >
         <div className="App">
           {Object.keys(this.props.initialState.content).map((item, index) => <Route key={index} exact path={item} component={RoutedContentPage} /> )}
         </div>

@@ -10,7 +10,7 @@ class ContentPage extends Component {
   }
 
   componentDidMount() {
-    var pageId = window.__INITIAL_STATE__.content[this.props.location.pathname.replace(/\/?$/, '/')].Id
+    var pageId = this.props.initialState.content[this.props.location.pathname.replace(/\/?$/, '/')].Id
 
     fetch(`/umbraco/surface/rendercontent/byid/${pageId}`, { credentials: 'same-origin' })
       .then((response) => {
@@ -25,13 +25,13 @@ class ContentPage extends Component {
   render() {
     return (
       <div>
-        <MainNavigation {...window.__INITIAL_STATE__} history={this.props.history} />
+        <MainNavigation {...this.props.initialState} history={this.props.history} />
 
 
         <div dangerouslySetInnerHTML ={{ __html: this.state.currentContent }} />
 
 
-        <BottomNavigation {...window.__INITIAL_STATE__} history={this.props.history} />
+        <BottomNavigation {...this.props.initialState} history={this.props.history} />
       </div>
     );
   }

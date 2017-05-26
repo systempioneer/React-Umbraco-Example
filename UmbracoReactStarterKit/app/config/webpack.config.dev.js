@@ -62,9 +62,9 @@ module.exports = {
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundle.js',
+    filename: 'app/build/static/js/main.js',
     // There are also additional JS chunk files if you use code splitting.
-    chunkFilename: 'static/js/[name].chunk.js',
+    chunkFilename: 'app/build/static/js/[name].chunk.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location
@@ -112,15 +112,15 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
+        // use: [
+        //   {
+        //     options: {
+        //       formatter: eslintFormatter,
               
-            },
-            loader: require.resolve('eslint-loader'),
-          },
-        ],
+        //     },
+        //     loader: require.resolve('eslint-loader'),
+        //   },
+        // ],
         include: paths.appSrc,
       },
       // ** ADDING/UPDATING LOADERS **

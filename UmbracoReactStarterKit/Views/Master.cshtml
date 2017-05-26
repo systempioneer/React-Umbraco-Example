@@ -1,4 +1,5 @@
 ﻿@using Newtonsoft.Json
+@using React.Web.Mvc
 @using UmbracoReactStarterKit
 @inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
@@ -20,7 +21,8 @@
         ViewBag.mainNavigation,
         ViewBag.bottomNavigation,
         homeUrl = home.Url,
-        siteLogo = home.SiteLogo
+        siteLogo = home.SiteLogo,
+        location = Request.Url.AbsolutePath
     };
 
     var serializedInitialState = JsonConvert.SerializeObject(initialState, Formatting.None,
@@ -61,15 +63,14 @@
 
 <body>
 
-    <div id="root"></div>
-
+    @Html.React("Components.App.default", new { initialState })
+    @*<div id="root"></div>*@
 
 
     <!-- Javascripts -->
-    <script>
-      window.__INITIAL_STATE__ = @Html.Raw(serializedInitialState)
-    </script>
-    <script src="/static/js/bundle.js"></script>
+    <script src="/app/build/static/js/main.js"></script>
+    @Html.ReactInitJavaScript()
+
     @*<script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/scripts/fanoe.js"></script>*@
