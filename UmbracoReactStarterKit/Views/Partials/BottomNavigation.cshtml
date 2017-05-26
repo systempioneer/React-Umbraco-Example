@@ -42,7 +42,7 @@
             @foreach (var page in pages.Where("Visible"))
             {
                 <li>
-                    <a href="@page.Url">@page.Name</a>
+                    <a href="@page.Url.Replace(@"//", "/")">@page.Name</a>
                 </li>
             }
         </ul>

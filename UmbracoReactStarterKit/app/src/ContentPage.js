@@ -6,25 +6,30 @@ class ContentPage extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { currentContent: '' }
+    this.state = { currentContent: this.props.initialState.currentContent.content }
   }
 
   componentDidMount() {
-    var pageId = this.props.initialState.content[this.props.location.pathname.replace(/\/?$/, '/')].Id
+    var pageId = this.props.initialState.content[this.props.location.pathname.replace(/\/+?$/, '/')].Id
 
-    fetch(`/umbraco/surface/rendercontent/byid/${pageId}`, { credentials: 'same-origin' })
-      .then((response) => {
-        if (response.ok) {
-          return response.text()
-        }
-        return Promise.reject(response)
+    if(this.props.initialState.currentContent.url !== this.props.location.pathname) {
+      this.setState({ currentContent: '' }, () => {
+        fetch(`/umbraco/surface/rendercontent/byid/${pageId}`, { credentials: 'same-origin' })
+          .then((response) => {
+            if (response.ok) {
+              return response.text()
+            }
+            return Promise.reject(response)
+          })
+          .then(result => { this.setState({ currentContent: result }) })
       })
-      .then(result => { this.setState({ currentContent: result }) })
+    }
   }
 
   render() {
     return (
       <div>
+        <ScrollToTopOnMount />
         <MainNavigation {...this.props.initialState} history={this.props.history} />
 
 
@@ -34,6 +39,16 @@ class ContentPage extends Component {
         <BottomNavigation {...this.props.initialState} history={this.props.history} />
       </div>
     );
+  }
+}
+
+class ScrollToTopOnMount extends Component {
+  componentDidMount(prevProps) {
+    window.scrollTo(0, 0)
+  }
+
+  render() {
+    return null
   }
 }
 

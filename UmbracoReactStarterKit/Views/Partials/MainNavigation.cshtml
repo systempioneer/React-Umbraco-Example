@@ -19,14 +19,14 @@
                     	<span>@childPage.Name</span>
 						@childPages(childPage.Children)
 					} else {
-						<a href="@childPage.Url">@childPage.Name</a>
+						<a href="@childPage.Url.Replace(@"//", "/")">@childPage.Name</a>
 					}
                 </li>
             } 
 			else
             {
                 <li class="@(childPage.IsAncestorOrSelf(CurrentPage) ? "selected" : null)">
-                    <a href="@childPage.Url">@childPage.Name</a>
+                    <a href="@childPage.Url.Replace(@"//", "/")">@childPage.Name</a>
                 </li>
             }            
         }
@@ -46,7 +46,7 @@
             @foreach (var page in pages)
             {
                 <li>
-                    <a href="@page.Url">@page.Name</a>
+                    <a href="@page.Url.Replace(@"//", "/")">@page.Name</a>
                     
                     @* if the current page has any children *@
                     @if (page.Children.Any())
