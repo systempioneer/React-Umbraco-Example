@@ -13,7 +13,7 @@
 				{
 					<div class="col-sm-6">
 						<div class="content equal">
-							<a href="@post.Url">
+							<a href="@post.Url.Replace(@"//", "/")">
 								<div class="date">@post.CreateDate.ToLongDateString()</div>
 								<h2>@post.Name</h2>		
 								<p>@Umbraco.Truncate(post.Introduction, 240, true)</p>
