@@ -5,8 +5,6 @@ const MainNavigation = props => {
   const { mainNavigation, homeUrl, siteLogo } = props
 
   const handleClick = e => {
-    e.preventDefault()
-
     if (e.target.tagName === 'A') {
       props.history.push(e.target.getAttribute('href'))
     }
@@ -28,7 +26,7 @@ const MainNavigation = props => {
       </div>
 
       <div id="toggle" className="toggle">
-          <Link to="#" className="cross"><span></span></Link>
+          <a className="cross" href="#"><span></span></a>
       </div>
     </header>
   );

@@ -4,9 +4,7 @@ const BottomNavigation = props => {
   const { bottomNavigation, homeUrl, siteLogo } = props
 
   const handleClick = e => {
-    e.preventDefault()
-
-    if (e.target.tagName === 'A') {
+    if (e.target.tagName === 'A' && e.target.getAttribute("target") !== "_blank") {
       props.history.push(e.target.getAttribute('href'))
     }
   }
