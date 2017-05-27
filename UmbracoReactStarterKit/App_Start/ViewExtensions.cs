@@ -25,7 +25,8 @@ namespace UmbracoReactStarterKit
 
             return model;
         }
-
+        
+        // https://stackoverflow.com/a/19208941
         public static string RenderToString(this PartialViewResult partialView)
         {
             var httpContext = HttpContext.Current;
