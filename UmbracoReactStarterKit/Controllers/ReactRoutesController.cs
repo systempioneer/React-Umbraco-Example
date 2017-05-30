@@ -6,7 +6,7 @@ namespace UmbracoReactStarterKit.Controllers
 {
     public class ReactRoutesController : ReactRenderMvcController
     {
-        public ActionResult Master(RenderModel model)
+        public ActionResult Index(RenderModel model)
         {
             var mainNavigationView = View("Partials/MainNavigation", model);
             var bottomNavigationView = View("Partials/BottomNavigation", model);
@@ -14,7 +14,7 @@ namespace UmbracoReactStarterKit.Controllers
             ViewBag.mainNavigation = mainNavigationView.RenderToString();
             ViewBag.bottomNavigation = bottomNavigationView.RenderToString();
 
-            return base.Index(model);
+            return View("Master", model);
         }
     }
 }

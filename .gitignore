@@ -263,3 +263,4 @@ __pycache__/
 **/*/App_Data/**/*
 **/*/._.DS_STORE
 ._.DS_STORE
+/UmbracoReactStarterKit/Media/created-packages/
