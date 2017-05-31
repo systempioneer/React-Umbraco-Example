@@ -2,7 +2,8 @@
 
 Live demo: [http://umbraco-react.systempioneer.com/](http://umbraco-react.systempioneer.com/)
 
-![Umbraco React Starter Kit](https://www.systempioneer.com/img/umbraco-react-example.png "Umbraco React Starter Kit")
+
+![Live demo screenshot](https://www.systempioneer.com/img/umbraco-react-example-2.png "Live demo screenshot")
 
 ## What is this?
 This is the default Umbraco Fanoe starter kit re-imagined as a badass single-page app, powered by React. It's an example of how Umbraco and React can come together beautifully.
