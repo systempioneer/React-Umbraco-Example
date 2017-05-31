@@ -11,12 +11,12 @@ This is the default Umbraco Fanoe starter kit re-imagined as a badass single-pag
 Built with love for our Umbraco friends by the dev team at [SystemPioneer](https://www.systempioneer.com/) 
 
 ## Features
-* React components rendered server-side within the Umbraco pipeline
-* Content rendered by Umbraco grid, edit content in the backoffice like a regular Umbraco site
-* Using ES6 syntax & build pipeline immediately familiar to React developers 
+* React components are rendered server-side within the Umbraco pipeline
+* Content is rendered by Umbraco grid, you can edit content in the backoffice just like a regular Umbraco site
+* Use of ES6 syntax & a build pipeline will be immediately familiar to React developers 
 * Bundled with Webpack with 90% code re-use between server and client bundles
 
-Disclaimer: This is new project and shouldn't be used yet for production. It's unstable and apis will change
+Disclaimer: This is new project and shouldn't be used yet for production. It's unstable and APIs will change
 
 ## Technical Overview
 Incoming requests are handled by a [custom RenderMvcController](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/Controllers/ReactRoutesController.cs), which is [registered](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/App_Start/UmbracoReactStartup.cs#L30) as the default controller and always renders the [Master.cshtml](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/Views/Master.cshtml) template. In that template React server rendering is achieved using [Reactjs.NET](https://reactjs.net/). An initial state for the React app is constructed using `UmbracoHelper` and passed as a prop to the root component.
@@ -24,7 +24,7 @@ Incoming requests are handled by a [custom RenderMvcController](https://github.c
 On the client side we use [react-router](https://github.com/ReactTraining/react-router) and [construct route handlers programatically](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/app/src/App.js#L31), using what we know about the Umbraco content nodes from the initial state. Every route renders a [ContentPage component](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/app/src/ContentPage.js), which uses the fetch api to make a request to a custom SurfaceController called [RenderContentController](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/Controllers/RenderContentController.cs). RenderContentController [returns a JSON object](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/Controllers/RenderContentController.cs#L37) containing a "Content" property, which is HTML rendererd by Umbraco and is used by React to update the page. It also returns a "Name" property which is used by [react-helmet](https://github.com/nfl/react-helmet) to update the page title. 
 
 ## Contributing
-We're definitely open for PRs! The project maintainer doesn't sleep and can merge a PR anytime. This is a new project and was built quickly as a proof-of-concept. There's alot of hacky code and we want to refactor everything.
+We're definitely open for PRs! The project maintainer doesn't sleep and can merge a PR anytime. This is a new project and was built quickly as a proof-of-concept. There's a lot of hacky code and we want to refactor everything.
 
 Still to do (at least):
 [ ] Refactor logic out of the [Master view](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/Views/Master.cshtml)
@@ -41,4 +41,4 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-![](http://www.systempioneer.com/img/SystemPioneerSmall.png)
+![](https://www.systempioneer.com/img/SystemPioneerSmall.png)
