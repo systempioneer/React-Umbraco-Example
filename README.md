@@ -27,11 +27,13 @@ On the client side we use [react-router](https://github.com/ReactTraining/react-
 We're definitely open for PRs! The project maintainer doesn't sleep and can merge a PR anytime. This is a new project and was built quickly as a proof-of-concept. There's a lot of hacky code and we want to refactor everything.
 
 Still to do (at least):
-
-* Refactor logic out of the [Master view](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/Views/Master.cshtml)
-* The [ViewFromContentId method](https://github.com/systempioneer/ReactUmbracoExample/blob/master/UmbracoReactStarterKit/Controllers/ReactRenderMvcController.cs#L13) is referenced in a hacky way in the Master template, and should probably go in the service layer
+* Make the project a little easier to set up for new cloners
+* Distribute as an Umbraco package
 * The react code needs to be gone over to be refactored for readability
 * Let's write unit tests for the js and .NET
+
+### Special Thanks
+* Thanks to [@stvnhrlnd](https://github.com/stvnhrlnd) for [refactoring logic out of the views](https://github.com/systempioneer/ReactUmbracoExample/pull/2) 👍
 
 ## License
 Copyright 2017 SYSTEMPIONEER LIMITED
