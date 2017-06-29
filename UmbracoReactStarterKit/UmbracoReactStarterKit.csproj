@@ -428,6 +428,8 @@
     <Compile Include="Controllers\ReactRoutesController.cs" />
     <Compile Include="Controllers\ReactRenderMvcController.cs" />
     <Compile Include="Controllers\RenderContentController.cs" />
+    <Compile Include="Models\InitialState.cs" />
+    <Compile Include="Models\MasterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
