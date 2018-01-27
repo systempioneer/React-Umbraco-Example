@@ -1,0 +1,15 @@
+{
+  "gridEditors": [
+    {
+      "name": "React Headline",
+      "alias": "ReactHeadline",
+      "view": "textstring",
+      "render": "~/App_Plugins/ReactHeadline/Website/view.cshtml",
+      "icon": "icon-sience",
+      "config": {
+        "style": "font-size: 36px; line-height: 45px; font-weight: bold",
+        "markup": "<h1>#value#</h1>"
+      }
+    }
+  ]
+}
